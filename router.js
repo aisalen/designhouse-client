@@ -28,6 +28,12 @@ const routes = [
     name: 'password.reset',
     component: page('auth/password/password-reset.vue')
   },
+  // 14.108
+  {
+    path: '/user/dashboard',
+    name: 'user.dashboard',
+    component: page('user/dashboard.vue')
+  },
 ];
 
 export function createRouter() {

@@ -15,7 +15,8 @@
             We have send verification email
           </alert-success>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="text"
               name="email"
               v-model="form.email"
@@ -23,16 +24,27 @@
               :class="{ 'is-invalid': form.errors.has('email') }"
               placeholder="Email"
             />
-            <has-error :form="form" field="email"></has-error>
+            <has-error :form="form" field="email"></has-error> -->
+            <base-input
+              :form="form"
+              field="email"
+              v-model="form.email"
+              placeholder="Email"
+            >
+            </base-input>
           </div>
 
           <div class="text-right">
-            <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
+            <!-- 14.107 -->
+            <!-- <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
               <span v-if="form.busy">
                 <i class="fas fa-spinner-fa-spin"></i>
               </span>
               Resend
-            </button>
+            </button> -->
+            <base-button :loading="form.busy">
+              Resend
+            </base-button>
           </div>
         </form>
     </div>
@@ -41,6 +53,9 @@
 
 <script>
 export default {
+    // 14.108
+  middleware: ['guest'],
+
   data() {
     return {
       form: this.$vform({

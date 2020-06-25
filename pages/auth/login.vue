@@ -15,7 +15,8 @@
             </nuxt-link>
           </alert-error>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="text"
               name="email"
               v-model="form.email"
@@ -23,10 +24,19 @@
               :class="{ 'is-invalid': form.errors.has('email') }"
               placeholder="Email"
             />
-            <has-error :form="form" field="email"></has-error>
+            <has-error :form="form" field="email"></has-error> -->
+            <!-- {{ form.email }} -->
+            <base-input
+              :form="form"
+              field="email"
+              v-model="form.email"
+              placeholder="Email"
+            >
+            </base-input>
           </div>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="password"
               name="password"
               v-model="form.password"
@@ -34,7 +44,15 @@
               :class="{ 'is-invalid': form.errors.has('password') }"
               placeholder="Password"
             />
-            <has-error :form="form" field="password"></has-error>
+            <has-error :form="form" field="password"></has-error> -->
+            <base-input
+              :form="form"
+              field="password"
+              inputType="password"
+              v-model="form.password"
+              placeholder="Password"
+            >
+            </base-input>
           </div>
           <div class="mt-4 mb-4 clearfix">
               <nuxt-link to="/password/email" class="forgot-pass color-blue font-14 fw-400">
@@ -46,12 +64,19 @@
             <!-- <button type="submit" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
                 Login
             </button> -->
-            <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
+            <!-- 14.105 -->
+            <!-- <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
               <span v-if="form.busy">
                 <i class="fas fa-spinner fa-spin"></i>
               </span>
               Login
-            </button>
+            </button> -->
+            <!-- <base-button></base-button> -->
+            <!-- 14.106 -->
+            <!-- <base-button :block="true" type="danger"></base-button> -->
+            <base-button :loading="form.busy">
+              Login
+            </base-button>
           </div>
           <p class="font-14 fw-400 text-center mt-4">
               Don't have an account yet?
@@ -66,6 +91,8 @@
 
 <script>
 export default {
+  // 14.108
+  middleware: ['guest'],
   // 13.100
   data() {
     return {

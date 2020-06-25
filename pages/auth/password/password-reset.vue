@@ -45,12 +45,16 @@
             />
           </div>
           <div class="text-right">
-            <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
+            <!-- 14.107 -->
+            <!-- <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
               <span v-if="form.busy">
                 <i class="fas fa-spinner fa-spin"></i>
               </span>
               Reset Password
-            </button>
+            </button> -->
+            <base-button :loading="form.busy">
+              Reset Password
+            </base-button>
           </div>
         </form>
     </div>
@@ -59,6 +63,9 @@
 
 <script>
 export default {
+    // 14.108
+  middleware: ['guest'],
+
   data() {
     return {
       status: '',

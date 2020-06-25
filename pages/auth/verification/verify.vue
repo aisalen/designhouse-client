@@ -14,14 +14,14 @@
             <!-- Email successfully verified. -->
             {{ status }}
           </div>
-          <a href="#">Proceed to Login</a>
+          <!-- <a href="#">Proceed to Login</a> -->
+          <nuxt-link to="/login">Proceed to Login</nuxt-link>
         </div>
         <div class="form-group" v-else>
           <div class="alert alert-danger">
             <!-- An error was encountered. -->
             {{ status }}
           </div>
-          <a href="#">Resend verification link</a>
         </div>
       </form>
     </div>
@@ -30,6 +30,9 @@
 
 <script>
 export default {
+    // 14.108
+  middleware: ['guest'],
+
   async asyncData({ params, query, app }) {
     // return { name: 'John Doe' };
     // return { name: query };

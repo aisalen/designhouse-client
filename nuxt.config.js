@@ -39,7 +39,9 @@ export default {
   */
   plugins: [
     // 12.97
-    '~plugins/vform'
+    '~plugins/vform',
+    // 14.105
+    '~components/_global'
   ],
   /*
   ** Nuxt.js dev-modules

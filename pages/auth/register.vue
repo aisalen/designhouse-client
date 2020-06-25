@@ -13,8 +13,9 @@
             We have sent you an email to activate your account.
           </alert-success>
           <div class="form-group">
+            <!-- 14.107 -->
             <!-- 13.98 -->
-            <input
+            <!-- <input
               type="text"
               v-model.trim="form.name"
               name="name"
@@ -22,11 +23,18 @@
               :class="{ 'is-invalid': form.errors.has('name') }"
               placeholder="Full Name"
             />
-            <!-- 13.98 -->
-            <has-error :form="form" field="name"></has-error>
+            <has-error :form="form" field="name"></has-error> -->
+            <base-input
+              :form="form"
+              field="name"
+              v-model.trim="form.name"
+              placeholder="Full Name"
+            >
+            </base-input>
           </div>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="text"
               v-model.trim="form.username"
               name="username"
@@ -34,10 +42,19 @@
               :class="{ 'is-invalid': form.errors.has('username') }"
               placeholder="Username"
             />
-            <has-error :form="form" field="username"></has-error>
+            <has-error :form="form" field="username"></has-error> -->
+            <base-input
+              :form="form"
+              inputType="text"
+              field="username"
+              v-model.trim="form.username"
+              placeholder="Username"
+            >
+            </base-input>
           </div>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="text"
               v-model.trim="form.email"
               name="email"
@@ -45,10 +62,19 @@
               :class="{ 'is-invalid': form.errors.has('email') }"
               placeholder="Email"
             />
-            <has-error :form="form" field="email"></has-error>
+            <has-error :form="form" field="email"></has-error> -->
+            <base-input
+              :form="form"
+              inputType="email"
+              field="email"
+              v-model.trim="form.email"
+              placeholder="Email"
+            >
+            </base-input>
           </div>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="password"
               v-model.trim="form.password"
               name="password"
@@ -56,28 +82,48 @@
               :class="{ 'is-invalid': form.errors.has('password') }"
               placeholder="Password"
             />
-            <has-error :form="form" field="password"></has-error>
+            <has-error :form="form" field="password"></has-error> -->
+            <base-input
+              :form="form"
+              inputType="password"
+              field="password"
+              v-model.trim="form.password"
+              placeholder="Password"
+            >
+            </base-input>
           </div>
           <div class="form-group">
-            <input
+            <!-- 14.107 -->
+            <!-- <input
               type="password"
               v-model.trim="form.password_confirmation"
               name="password_confirmation"
               class="form-control form-control-lg font-14 fw-300"
               placeholder="Confirm Password"
-            />
+            /> -->
+            <base-input
+              :form="form"
+              inputType="password"
+              field="password_confirmation"
+              v-model.trim="form.password_confirmation"
+              placeholder="Confirm Password"
+            >
+            </base-input>
           </div>
 
           <div class="text-right">
             <!-- 13.98 -->
             <!-- <button type="submit" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase"> -->
-            <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
-              <!-- 13.98 -->
+            <!-- 14.107 -->
+            <!-- <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
               <span v-if="form.busy">
                 <i class="fas fa-spinner fa-spin"></i>
               </span>
               Register
-            </button>
+            </button> -->
+            <base-button :loading="form.busy">
+              Register
+            </base-button>
           </div>
           <p class="font-14 fw-400 text-center mt-4">
               Already have an account?
@@ -92,6 +138,9 @@
 
 <script>
 export default {
+  // 14.108
+  middleware: ['guest'],
+
   // 13.98
   data() {
     return {
