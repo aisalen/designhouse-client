@@ -1,3 +1,5 @@
+// 13.98
+require('dotenv').config();
 
 export default {
   mode: 'universal',
@@ -79,7 +81,7 @@ export default {
   */
   axios: {
     // 12.92
-    baseUrl: process.env.API_URL
+    baseURL: process.env.API_URL
   },
   /*
   ** Build configuration

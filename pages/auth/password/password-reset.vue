@@ -1,23 +1,22 @@
 <template>
-<!-- 12.95 -->
+  <!-- 13.104 -->
   <section class="authentication">
     <div class="auth-body">
         <h1 class="text-uppercase fw-500 mb-4 text-center font-22">
-            Login
+            Reset Password
         </h1>
-        <!-- <form class="auth-form" action="" method=""> -->
-        <!-- 13.100 -->
         <form class="auth-form" @submit.prevent="submit">
-          <alert-error v-if="form.errors.has('message')" :form="form">
-            {{ form.errors.get('message') }}
-            <nuxt-link :to="{ name: 'verification.resend' }">
-              Resend verification email
-            </nuxt-link>
-          </alert-error>
+          <alert-success :form="form">
+            {{ status }}
+            <p>
+              <nuxt-link to="/login">Proceed to login</nuxt-link>
+            </p>
+          </alert-success>
           <div class="form-group">
             <input
               type="text"
               name="email"
+              readonly
               v-model="form.email"
               class="form-control form-control-lg font-14 fw-300"
               :class="{ 'is-invalid': form.errors.has('email') }"
@@ -32,33 +31,27 @@
               v-model="form.password"
               class="form-control form-control-lg font-14 fw-300"
               :class="{ 'is-invalid': form.errors.has('password') }"
-              placeholder="Password"
+              placeholder="New Password"
             />
             <has-error :form="form" field="password"></has-error>
           </div>
-          <div class="mt-4 mb-4 clearfix">
-              <nuxt-link to="/password/email" class="forgot-pass color-blue font-14 fw-400">
-                Forgot password?
-              </nuxt-link>
+          <div class="form-group">
+            <input
+              type="password"
+              name="password_confirmation"
+              v-model="form.password_confirmation"
+              class="form-control form-control-lg font-14 fw-300"
+              placeholder="Confirm New Password"
+            />
           </div>
           <div class="text-right">
-            <!-- 13.100 -->
-            <!-- <button type="submit" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
-                Login
-            </button> -->
             <button type="submit" :disabled="form.busy" class="btn btn-primary primary-bg-color font-16 fw-500 text-uppercase">
               <span v-if="form.busy">
                 <i class="fas fa-spinner fa-spin"></i>
               </span>
-              Login
+              Reset Password
             </button>
           </div>
-          <p class="font-14 fw-400 text-center mt-4">
-              Don't have an account yet?
-              <!-- <a class="color-blue" href="#"> Create an account</a> -->
-              <!-- 13.100 -->
-              <nuxt-link :to="{ name: 'register' }" class="color-blue"> Create an account</nuxt-link>
-          </p>
         </form>
     </div>
   </section>
@@ -66,29 +59,35 @@
 
 <script>
 export default {
-  // 13.100
   data() {
     return {
+      status: '',
       form: this.$vform({
         email: '',
-        password: ''
+        password: '',
+        password_confirmation: '',
+        token: ''
       })
     }
   },
 
   methods: {
     submit() {
-      this.$auth.loginWith('local', {
-        data: this.form
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(e => {
-        // console.log(e.response.data.errors);
-        this.form.errors.set(e.response.data.errors);
-      });
+      this.form
+        .post('/password/reset')
+        .then(res => {
+          this.status = res.data.status;
+          this.form.reset();
+        })
+        .catch(e => {
+          console.log(e);
+        })
     }
+  },
+
+  created() {
+    this.form.email = this.$route.query.email;
+    this.form.token = this.$route.params.token;
   }
 }
 </script>
