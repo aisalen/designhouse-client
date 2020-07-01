@@ -11,7 +11,7 @@
 
 <script>
 import SiteNavigation from './partials/navigation'
-import SiteFooter from  './partials/footer'
+import SiteFooter from './partials/footer'
 export default {
   components: {
     SiteNavigation,

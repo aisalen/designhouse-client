@@ -8,15 +8,12 @@
         <form class="auth-form" @submit.prevent="submit">
           <alert-success :form="form">{{ status }}</alert-success>
           <div class="form-group">
-            <input
-              type="text"
-              name="email"
+            <base-input
+              :form="form"
+              field="email"
               v-model="form.email"
-              class="form-control form-control-lg font-14 fw-300"
-              :class="{ 'is-invalid': form.errors.has('email') }"
               placeholder="Email"
-            />
-            <has-error :form="form" field="email"></has-error>
+            ></base-input>
           </div>
           <div class="text-right">
             <!-- 14.107 -->
@@ -51,7 +48,7 @@ export default {
       form: this.$vform({
         email: ''
       })
-    }
+    };
   },
 
   methods: {
@@ -64,10 +61,10 @@ export default {
         })
         .catch(e => {
           console.log(e);
-        })
+        });
     }
   }
-}
+};
 </script>
 
 <style>

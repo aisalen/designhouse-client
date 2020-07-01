@@ -10,14 +10,16 @@ export default ({ app }, inject) => {
   Form.prototype.submit = function submit(method, url, config = {}) {
     this.startProcessing();
 
-    const data = method === 'get'
-      ? { params: this.data() }
-      : this.data();
+    const data = method === 'get' ? { params: this.data() } : this.data();
 
     return new Promise((resolve, reject) => {
-      app.$axios.request({
-        url: this.route(url), method, data, ...config,
-      })
+      app.$axios
+        .request({
+          url: this.route(url),
+          method,
+          data,
+          ...config
+        })
         .then(response => {
           this.finishProcessing();
 

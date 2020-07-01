@@ -10,9 +10,9 @@
         <form class="auth-form" @submit.prevent="submit">
           <alert-error v-if="form.errors.has('message')" :form="form">
             {{ form.errors.get('message') }}
-            <nuxt-link :to="{ name: 'verification.resend' }">
-              Resend verification email
-            </nuxt-link>
+            <nuxt-link :to="{ name: 'verification.resend' }"
+              >Resend verification email</nuxt-link
+            >
           </alert-error>
           <div class="form-group">
             <!-- 14.107 -->
@@ -31,8 +31,7 @@
               field="email"
               v-model="form.email"
               placeholder="Email"
-            >
-            </base-input>
+            ></base-input>
           </div>
           <div class="form-group">
             <!-- 14.107 -->
@@ -51,11 +50,13 @@
               inputType="password"
               v-model="form.password"
               placeholder="Password"
-            >
-            </base-input>
+            ></base-input>
           </div>
           <div class="mt-4 mb-4 clearfix">
-              <nuxt-link to="/password/email" class="forgot-pass color-blue font-14 fw-400">
+              <nuxt-link
+                to="/password/email"
+                class="forgot-pass color-blue font-14 fw-400"
+              >
                 Forgot password?
               </nuxt-link>
           </div>
@@ -82,7 +83,9 @@
               Don't have an account yet?
               <!-- <a class="color-blue" href="#"> Create an account</a> -->
               <!-- 13.100 -->
-              <nuxt-link :to="{ name: 'register' }" class="color-blue"> Create an account</nuxt-link>
+              <nuxt-link :to="{ name: 'register' }" class="color-blue">
+                Create an account
+              </nuxt-link>
           </p>
         </form>
     </div>
@@ -100,24 +103,25 @@ export default {
         email: '',
         password: ''
       })
-    }
+    };
   },
 
   methods: {
     submit() {
-      this.$auth.loginWith('local', {
-        data: this.form
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(e => {
-        // console.log(e.response.data.errors);
-        this.form.errors.set(e.response.data.errors);
-      });
+      this.$auth
+        .loginWith('local', {
+          data: this.form
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(e => {
+          // console.log(e.response.data.errors);
+          this.form.errors.set(e.response.data.errors);
+        });
     }
   }
-}
+};
 </script>
 
 <style>

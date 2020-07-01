@@ -37,14 +37,14 @@ export default {
     // return { name: 'John Doe' };
     // return { name: query };
     // return { name: params.id };
-    const q = Object.keys(query)
+    const q = await Object.keys(query)
       .map(k => `${k}=${query[k]}`)
       .join('&');
     // return { name: q };
     try {
       const { data } = await app.$axios.post(
         `/verification/verify/${params.id}?${q}`
-      )
+      );
       return { success: true, status: data.message };
     } catch (e) {
       return { success: false, status: e.response.data.errors.message };

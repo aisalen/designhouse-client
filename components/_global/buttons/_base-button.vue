@@ -46,7 +46,7 @@ export default {
       default: 'md'
     }
   }
-}
+};
 </script>
 
 <style>

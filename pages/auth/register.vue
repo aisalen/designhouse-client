@@ -2,16 +2,12 @@
 <!-- 12.95 -->
   <section class="authentication">
     <div class="auth-body">
-        <h1 class="text-uppercase fw-500 mb-4 text-center font-22">
-            Register
-        </h1>
+        <h1 class="text-uppercase fw-500 mb-4 text-center font-22">Register</h1>
         <!-- 13.98 -->
         <!-- <form class="auth-form"> -->
         <form class="auth-form" @submit.prevent="submit">
           <!-- 13.99 -->
-          <alert-success :form="form">
-            We have sent you an email to activate your account.
-          </alert-success>
+          <alert-success :form="form">We have sent you an email to activate your account.</alert-success>
           <div class="form-group">
             <!-- 14.107 -->
             <!-- 13.98 -->
@@ -24,13 +20,7 @@
               placeholder="Full Name"
             />
             <has-error :form="form" field="name"></has-error> -->
-            <base-input
-              :form="form"
-              field="name"
-              v-model.trim="form.name"
-              placeholder="Full Name"
-            >
-            </base-input>
+            <base-input :form="form" field="name" v-model.trim="form.name" placeholder="Full Name"></base-input>
           </div>
           <div class="form-group">
             <!-- 14.107 -->
@@ -49,8 +39,7 @@
               field="username"
               v-model.trim="form.username"
               placeholder="Username"
-            >
-            </base-input>
+            ></base-input>
           </div>
           <div class="form-group">
             <!-- 14.107 -->
@@ -69,8 +58,7 @@
               field="email"
               v-model.trim="form.email"
               placeholder="Email"
-            >
-            </base-input>
+            ></base-input>
           </div>
           <div class="form-group">
             <!-- 14.107 -->
@@ -89,8 +77,7 @@
               field="password"
               v-model.trim="form.password"
               placeholder="Password"
-            >
-            </base-input>
+            ></base-input>
           </div>
           <div class="form-group">
             <!-- 14.107 -->
@@ -107,8 +94,7 @@
               field="password_confirmation"
               v-model.trim="form.password_confirmation"
               placeholder="Confirm Password"
-            >
-            </base-input>
+            ></base-input>
           </div>
 
           <div class="text-right">
@@ -121,9 +107,7 @@
               </span>
               Register
             </button> -->
-            <base-button :loading="form.busy">
-              Register
-            </base-button>
+            <base-button :loading="form.busy">Register</base-button>
           </div>
           <p class="font-14 fw-400 text-center mt-4">
               Already have an account?
@@ -151,20 +135,21 @@ export default {
         password: '',
         password_confirmation: ''
       })
-    }
+    };
   },
 
   methods: {
     submit() {
       // console.log('Submitting...');
-      this.form.post(`/register`)
-      .then(res => {
-        // console.log(res);
-        this.form.reset();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      this.form
+        .post(`/register`)
+        .then(res => {
+          // console.log(res);
+          this.form.reset();
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
   }
 };

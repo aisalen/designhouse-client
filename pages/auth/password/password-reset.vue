@@ -13,36 +13,31 @@
             </p>
           </alert-success>
           <div class="form-group">
-            <input
-              type="text"
-              name="email"
-              readonly
+            <base-input
+              :form="form"
+              :readonly="true"
+              field="email"
               v-model="form.email"
-              class="form-control form-control-lg font-14 fw-300"
-              :class="{ 'is-invalid': form.errors.has('email') }"
               placeholder="Email"
-            />
-            <has-error :form="form" field="email"></has-error>
+            ></base-input>
           </div>
           <div class="form-group">
-            <input
-              type="password"
-              name="password"
+            <base-input
+              :form="form"
+              inputType="password"
+              field="password"
               v-model="form.password"
-              class="form-control form-control-lg font-14 fw-300"
-              :class="{ 'is-invalid': form.errors.has('password') }"
               placeholder="New Password"
-            />
-            <has-error :form="form" field="password"></has-error>
+            ></base-input>
           </div>
           <div class="form-group">
-            <input
-              type="password"
-              name="password_confirmation"
+            <base-input
+              :form="form"
+              inputType="password"
+              field="password_confirmation"
               v-model="form.password_confirmation"
-              class="form-control form-control-lg font-14 fw-300"
               placeholder="Confirm New Password"
-            />
+            ></base-input>
           </div>
           <div class="text-right">
             <!-- 14.107 -->
@@ -75,7 +70,7 @@ export default {
         password_confirmation: '',
         token: ''
       })
-    }
+    };
   },
 
   methods: {
@@ -88,7 +83,7 @@ export default {
         })
         .catch(e => {
           console.log(e);
-        })
+        });
     }
   },
 
@@ -96,7 +91,7 @@ export default {
     this.form.email = this.$route.query.email;
     this.form.token = this.$route.params.token;
   }
-}
+};
 </script>
 
 <style>

@@ -11,16 +11,24 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
     // 12.93
     script: [
-      { src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"},
-      { src: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"},
-      { src: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"},
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"
+      },
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+      },
+      {
+        src: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/js/all.min.js"
+      },
     ]
   },
   /*
@@ -41,7 +49,9 @@ export default {
     // 12.97
     '~plugins/vform',
     // 14.105
-    '~components/_global'
+    '~components/_global',
+    // 15.120
+    { src: '~/plugins/gmaps', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -92,7 +102,13 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) { },
+
+    html: {
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }
   }
-}
+};

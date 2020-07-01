@@ -1,6 +1,6 @@
 <template>
   <div>
-    <i class="fas fa-user"></i>
+    <!-- <i class="fas fa-user"></i> -->
     <!-- 12.96 -->
     <!-- {{ $auth.loggedIn }} -->
   </div>
@@ -9,6 +9,6 @@
 <script>
 
 export default {
-
-}
+  mounted() {}
+};
 </script>

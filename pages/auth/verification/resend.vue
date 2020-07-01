@@ -12,7 +12,7 @@
             {{ form.errors.get('message') }}
           </alert-error>
           <alert-success :form="form">
-            We have send verification email
+            We have resent the verification email
           </alert-success>
           <div class="form-group">
             <!-- 14.107 -->
@@ -30,8 +30,7 @@
               field="email"
               v-model="form.email"
               placeholder="Email"
-            >
-            </base-input>
+            ></base-input>
           </div>
 
           <div class="text-right">
@@ -72,7 +71,7 @@ export default {
         .catch(e => console.log(e));
     }
   }
-}
+};
 </script>
 
 <style>

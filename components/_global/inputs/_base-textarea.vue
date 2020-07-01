@@ -1,9 +1,9 @@
 <template>
-  <!-- 14.107 -->
+  <!-- 15.113 -->
   <div>
-    <input
+    <textarea
       class="form-control form-control-lg font-14 fw-300"
-      :type="inputType"
+      :rows="rows"
       :value="value"
       :readonly="readonly"
       :placeholder="placeholder"
@@ -33,9 +33,9 @@ export default {
       type: String,
       default: ''
     },
-    inputType: {
-      type: String,
-      default: 'text'
+    rows: {
+      type: Number,
+      default: 3
     },
     readonly: {
       type: Boolean,
